@@ -118,3 +118,26 @@ while 1:
     print("4- Vuelos tripulados por no autorizados")
     print("5- Tripulantes que hacen mas de un vuelo por dia")
     print("6- Personas VIP o con necesidades especiales por vuelo")
+    print(" ")
+    Eleccion=input("Elija opcion: ")
+
+    if Eleccion == 2:
+        ListaMenores=[]
+        for item in ListaVuelos:
+            menor=None
+            for item2 in item.ListaPersonas:
+                if menor == None:
+                    menor = item2
+
+                if menor > item2.FechaN:
+                    menor = item2
+
+                ListaMenores.append(menor)
+
+        for item in ListaMenores:
+            print("%d %d" %(ListaMenores[item].Nombre, ListaMenores[item].Apellido))
+
+
+
+
+
