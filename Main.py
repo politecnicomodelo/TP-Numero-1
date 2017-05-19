@@ -138,6 +138,15 @@ while 1:
             Contador+=1
             Auxiliar=len(item.ListaTripulantes)+len(item.ListaPasajeros)
             print("La nomina del vuelo %s es de %s" %(Contador, Auxiliar))
+            Texto = ["Nombre", "Apellido", "FechaN", "Dni"]
+            for item2 in item.ListaPasajeros:
+                Texto2 = [item2.Nombre, item2.Apellido, str(item2.FechaN), item2.DNI]
+                print("{: >20} {: >20} {: >20} {: >20}".format (*Texto2))
+
+
+            for item3 in  item.ListaTripulantes:
+                Texto3 = [item3.Nombre, item3.Apellido, str(item3.FechaN), item3.DNI]
+                print("{: >20} {: >20} {: >20} {: >20}".format (*Texto3))
 
         input("Enter para continuar")
 
@@ -156,7 +165,7 @@ while 1:
                 if menor > item2.FechaN:
                     menor = item2
 
-                ListaMenores.append(menor)
+            ListaMenores.append(menor)
 
         for item in ListaMenores:
             print("%d %d" %(ListaMenores[item].Nombre, ListaMenores[item].Apellido))
