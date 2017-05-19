@@ -141,25 +141,43 @@ while 1:
 
         input("Enter para continuar")
 
-    if Eleccion == "7":
-        break
-
-
-    if Eleccion == 2:
+    if Eleccion == "2":
         ListaMenores=[]
+        menor = None
         for item in ListaVuelos:
             menor=None
-            for item2 in item.ListaPersonas:
+            for item2 in item.ListaPasajeros:
                 if menor == None:
                     menor = item2
 
-                if menor > item2.FechaN:
+                if menor.FechaN < item2.FechaN:
                     menor = item2
+            ListaMenores.append(menor)
 
-                ListaMenores.append(menor)
-
+        os.system("clear")
+        NroVuelo=0
         for item in ListaMenores:
-            print("%d %d" %(ListaMenores[item].Nombre, ListaMenores[item].Apellido))
+            NroVuelo+=1
+            print("El pasajero mas joven del vuelo %s es %s %s" % (NroVuelo, item.Nombre, item.Apellido))
+        input()
+
+    if Eleccion == "3":
+        os.system("clear")
+
+        Auxiliar=False
+
+        for item in ListaVuelos:
+            if len(item.ListaTripulantes) < int(item.Avion.CantTripulacion):
+                print("El vuelo con origen en %s y destino en %s no alcanza la cantidad minima" %(item.Origen, item.Destino))
+                Auxiliar=True
+
+        if not Auxiliar:
+            print("No hay ningun vuelo al que le falten tripulantes ")
+
+        input("Enter para continuar")
+
+    if Eleccion == "7":
+        break
 
 
 
