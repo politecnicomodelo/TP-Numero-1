@@ -1,17 +1,16 @@
-Pasajero|Juan|Perez|12-03-1980|30456789|0|Vegetariano
+Pasajero|Juan|Perez|12-03-1980|30456789|0|Vegetariano|
 Pasajero|Pedro|Dominguez|13-04-1970|31987542|1|
-Piloto|Rodrigo|Palacios|10-05-1955|12000000|A1,A2,A3
-Piloto|Manuel|Fraga|11-04-1970|33333333|A1,A3
-Piloto|Joaquín|Sarasa|19-09-1975|44554455|A2,A3
-Servicio|Manuel|Sarasa|19-09-1975|44554455|A2,A3,A4|Inglés,Español
-Servicio|Maria|Lalala|19-10-1975|44554255|A3,A4|Inglés
-Servicio|Florencia|Perez|10-10-1985|44533255|A3,A4|Inglés,Portugués
-Servicio|Julia|Dominguez|10-11-1985|44533254|A1,A3,A4|Portugués,Español
+Piloto|Rodrigo|Palacios|10-05-1955|12000000|A1,A2,A3|
+Piloto|Manuel|Fraga|11-04-1970|33333333|A1,A3|
+Servicio|Manuel|Sarasa|19-09-1975|44554455|A2,A3,A4|Inglés,Español|
+Servicio|Maria|Lalala|19-10-1975|44554255|A3,A4|Inglés|
+Servicio|Florencia|Perez|10-10-1985|44533255|A3,A4|Inglés,Portugués|
+Servicio|Julia|Dominguez|10-11-1985|44533254|A1,A3,A4|Portugués,Español|
 Pasajero|Daniel|Dominguez|13-04-1970|21987541|0|
-Pasajero|Daniel|Rodriguez|13-04-1970|21987441|0|Silla de Ruedas
+Pasajero|Daniel|Rodriguez|13-04-1970|21987441|0|Silla de Ruedas|
 Pasajero|Mariano|Dominguez|13-04-1974|22987541|1|
 Pasajero|Daniela|Damasco|13-04-2001|52987541|0|
 Pasajero|Daniela|Perez|23-04-2011|53987541|1|
-Pasajero|Esteban|Perez|24-04-2011|55987541|1|Vegano
+Pasajero|Esteban|Perez|24-04-2011|55987541|1|Vegano|
 Pasajero|Miriam|Lalala|14-04-2011|55587541|0|
 Pasajero|Maximiliano|Lalala|14-10-2011|55583541|0|

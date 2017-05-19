@@ -1,5 +1,5 @@
-from .Personas import Personas
-class Pasajero(Personas):
+from .Personas import Persona
+class Pasajero(Persona):
 
     VIP=None
 
