@@ -38,7 +38,10 @@ def cargarPersonas():
             Fecha=Auxiliar[3].split("-")
             unPiloto.setFechaN(int(Fecha[2]), int(Fecha[1]), int(Fecha[0]))
             unPiloto.setDNI(Auxiliar[4])
-            unPiloto.setModelosAvion(Auxiliar[5])
+            Modelos=Auxiliar[5].split(",")
+            for item in Modelos:
+                unPiloto.addAviones(item)
+            unPiloto.addAviones(Auxiliar[5])
 
             ListaPersonas2.append(unPiloto)
 
@@ -49,7 +52,10 @@ def cargarPersonas():
             Fecha=Auxiliar[3].split("-")
             unServicio.setFechaN(int(Fecha[2]), int(Fecha[1]), int(Fecha[0]))
             unServicio.setDNI(Auxiliar[4])
-            unServicio.setIdiomas(Auxiliar[5])
+            Modelos=Auxiliar[5].split(",")
+            for item in Modelos:
+                unServicio.addAviones(item)
+            unServicio.setIdiomas(Auxiliar[6])
 
             ListaPersonas2.append(unServicio)
     p.close()
@@ -96,13 +102,13 @@ def cargarVuelos():
         unVuelo.setOrigen(Aux[3])
         unVuelo.setDestino(Aux[4])
 
-        Pasajeros = Aux[5].split(",")
+        Pasajeros = Aux[6].split(",")
         for pdni in Pasajeros:
             for item in ListaPersonas2:
                 if item.DNI == pdni:
                     unVuelo.addPasajero(item)
 
-        Tripulantes = Aux[6].split(",")
+        Tripulantes = Aux[5].split(",")
         for pdni in Tripulantes:
             for item in ListaPersonas2:
                 if item.DNI == pdni:
@@ -137,7 +143,7 @@ while 1:
         for item in ListaVuelos:
             Contador+=1
             Auxiliar=len(item.ListaTripulantes)+len(item.ListaPasajeros)
-            print("La nomina del vuelo %s es de %s" %(Contador, Auxiliar))
+            print("La nomina del vuelo con origen en %s y destino en %s es de %s" %(item.Origen, item.Destino, Auxiliar))
             Texto = ["Nombre", "Apellido", "FechaN", "Dni"]
             for item2 in item.ListaPasajeros:
                 Texto2 = [item2.Nombre, item2.Apellido, str(item2.FechaN), item2.DNI]
@@ -148,9 +154,11 @@ while 1:
                 Texto3 = [item3.Nombre, item3.Apellido, str(item3.FechaN), item3.DNI]
                 print("{: >20} {: >20} {: >20} {: >20}".format (*Texto3))
 
-        input("Enter para continuar")
+            input("Enter para continuar")
 
     if Eleccion == "2":
+        os.system("clear")
+
         ListaMenores=[]
         menor = None
         for item in ListaVuelos:
@@ -158,16 +166,10 @@ while 1:
             for item2 in item.ListaPasajeros:
                 if menor == None:
                     menor = item2
-
                 if menor.FechaN < item2.FechaN:
                     menor = item2
             ListaMenores.append(menor)
-
-        os.system("clear")
-        NroVuelo=0
-        for item in ListaMenores:
-            NroVuelo+=1
-            print("El pasajero mas joven del vuelo %s es %s %s" % (NroVuelo, item.Nombre, item.Apellido))
+            print("El pasajero mas joven del vuelo con origen en %s y destino en %s es %s %s" % (item.Origen, item.Destino ,menor.Nombre, menor.Apellido))
         input()
 
     if Eleccion == "3":
@@ -184,6 +186,24 @@ while 1:
             print("No hay ningun vuelo al que le falten tripulantes ")
 
         input("Enter para continuar")
+
+    if Eleccion == "4":
+        os.system("clear")
+
+        ListaNSFW=[]
+
+        Habilitacion=True
+        for Vuelo in ListaVuelos:
+            for Tripulante in Vuelo.ListaTripulantes:
+                for Avion in Tripulante.ListaAviones:
+                    if Avion != Vuelo.Avion:
+                        Auxiliar=Tripulante
+                        Habilitacion=False
+            if Habilitacion == False:
+                ListaNSFW.append(Auxiliar)
+            """""SEGUIR DESDE ACA"""
+
+
 
     if Eleccion == "7":
         break

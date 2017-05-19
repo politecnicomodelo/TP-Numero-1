@@ -1,7 +1,8 @@
 from .Personas import Persona
 class Tripulacion(Persona):
 
-    ModelosAvion=None
+    def __init__(self):
+        self.ListaAviones=[]
 
-    def setModelosAvion(self, n):
-        self.ModelosAvion=n
+    def addAviones(self, n):
+        self.ListaAviones.append(n)
