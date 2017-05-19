@@ -1,5 +1,5 @@
-from .Personas import Personas
-class Tripulacion(Personas):
+from .Personas import Persona
+class Tripulacion(Persona):
 
     ModelosAvion=None
 

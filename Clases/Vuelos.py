@@ -1,13 +1,15 @@
 from datetime import date
-from .Pilotos import Pilotos
+from .Pilotos import Piloto
 from .ServicioAbordo import ServicioAbordo
-from .Aviones import Aviones
-from .Pasajeros import Pasajeros
+from .Aviones import Avion
+from .Pasajeros import Pasajero
 class Vuelo(object):
 
-    Avion=None
+    def __init__(self):
+        self.ListaPasajeros=[]
+        self.ListaTripulantes=[]
 
-    ListaPersonas=[]
+    Avion=None
 
     Fecha=None
 
@@ -20,8 +22,11 @@ class Vuelo(object):
     def setAvion(self, n):
         self.Avion=n
 
-    def setPersona(self, n):
-        self.ListaPersonas.append(n)
+    def addPasajero(self, n):
+        self.ListaPasajeros.append(n)
+
+    def addTripulantes(self, n):
+        self.ListaTripulantes.append(n)
 
     def setFecha(self, Anio, Mes, Dia):
         self.Fecha=date(int(Anio), int(Mes), int(Dia))
@@ -29,7 +34,7 @@ class Vuelo(object):
     def setHora(self, n):
         self.Hora=n
 
-    def serOrigen(self, n):
+    def setOrigen(self, n):
         self.Origen=n
 
     def setDestino(self, n):

@@ -24,7 +24,7 @@ def cargarPersonas():
             unPasajero.setNombre(Auxiliar[1])
             unPasajero.setApellido(Auxiliar[2])
             Fecha=Auxiliar[3].split("-")
-            unPasajero.setFechaN(int(Fecha[0]), int(Fecha[1]), int(Fecha[2]))
+            unPasajero.setFechaN(int(Fecha[2]), int(Fecha[1]), int(Fecha[0]))
             unPasajero.setDNI(Auxiliar[4])
             unPasajero.setVIP(Auxiliar[5])
             unPasajero.setNecesidades(Auxiliar[6])
@@ -36,7 +36,7 @@ def cargarPersonas():
             unPiloto.setNombre(Auxiliar[1])
             unPiloto.setApellido(Auxiliar[2])
             Fecha=Auxiliar[3].split("-")
-            unPiloto.setFechaN(int(Fecha[0]), int(Fecha[1]), int(Fecha[2]))
+            unPiloto.setFechaN(int(Fecha[2]), int(Fecha[1]), int(Fecha[0]))
             unPiloto.setDNI(Auxiliar[4])
             unPiloto.setModelosAvion(Auxiliar[5])
 
@@ -47,7 +47,7 @@ def cargarPersonas():
             unServicio.setNombre(Auxiliar[1])
             unServicio.setApellido(Auxiliar[2])
             Fecha=Auxiliar[3].split("-")
-            unServicio.setFechaN(int(Fecha[0]), int(Fecha[1]), int(Fecha[2]))
+            unServicio.setFechaN(int(Fecha[2]), int(Fecha[1]), int(Fecha[0]))
             unServicio.setDNI(Auxiliar[4])
             unServicio.setIdiomas(Auxiliar[5])
 
@@ -68,15 +68,15 @@ def cargarAviones():
         unAvion=Avion()
         unAvion.setModelo(Auxiliar[0])
         unAvion.setCantPasajeros(Auxiliar[1])
-        unAvion.setTripulacion(Auxiliar[2])
+        unAvion.setCantTripulacion(Auxiliar[2])
 
         ListaAviones2.append(unAvion)
 
     p.close()
 
 def cargarVuelos():
-    Aux=None
     p=open("vuelos.dat" ,"r")
+
     for line in p:
         if line == "":
             break
@@ -89,20 +89,27 @@ def cargarVuelos():
                 unVuelo.setAvion(item)
                 break
 
-        fecha = Aux[1].split("-")
-        unVuelo.setFecha(int(fecha[0]), int(fecha[1]), int(fecha[2]))
-        unVuelo.setOrigen(Aux[2])
-        unVuelo.setDestino(Aux[3])
+        Fecha = Aux[1].split("-")
+        unVuelo.setFecha(int(Fecha[2]), int(Fecha[1]), int(Fecha[0]))
 
-        for item in ListaPersonas2:
-            if item.DNI == Aux[4]:
-                unVuelo.setPersona(item)
+        unVuelo.setHora(Aux[2])
+        unVuelo.setOrigen(Aux[3])
+        unVuelo.setDestino(Aux[4])
 
-        for item in ListaPersonas2:
-            if item.DNI == Aux[5]:
-                unVuelo.setPersona(item)
+        Pasajeros = Aux[5].split(",")
+        for pdni in Pasajeros:
+            for item in ListaPersonas2:
+                if item.DNI == pdni:
+                    unVuelo.addPasajero(item)
+
+        Tripulantes = Aux[6].split(",")
+        for pdni in Tripulantes:
+            for item in ListaPersonas2:
+                if item.DNI == pdni:
+                    unVuelo.addTripulantes(item)
 
         ListaVuelos.append(unVuelo)
+
     p.close()
 
 cargarPersonas()
@@ -110,7 +117,7 @@ cargarAviones()
 cargarVuelos()
 
 while 1:
-    os.system("cls")
+    os.system("clear")
 
     print("1- Nomina personas por vuelo")
     print("2- Pasajero mas joven por vuelo")
@@ -118,3 +125,29 @@ while 1:
     print("4- Vuelos tripulados por no autorizados")
     print("5- Tripulantes que hacen mas de un vuelo por dia")
     print("6- Personas VIP o con necesidades especiales por vuelo")
+    print("7- Salir")
+    print(" ")
+    Eleccion=input("Elija opcion: ")
+
+
+    if Eleccion == "1":
+        os.system("clear")
+
+        Contador=0
+        for item in ListaVuelos:
+            Contador+=1
+            Auxiliar=len(item.ListaTripulantes)+len(item.ListaPasajeros)
+            print("La nomina del vuelo %s es de %s" %(Contador, Auxiliar))
+
+        input("Enter para continuar")
+
+    if Eleccion == "7":
+        break
+
+
+
+
+
+
+
+
