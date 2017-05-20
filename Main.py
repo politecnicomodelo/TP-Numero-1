@@ -137,10 +137,9 @@ while 1:
 
 
     if Eleccion == "1":
-        os.system("clear")
-
         Contador=0
         for item in ListaVuelos:
+            os.system("clear")
             Contador+=1
             Auxiliar=len(item.ListaTripulantes)+len(item.ListaPasajeros)
             print("La nomina del vuelo con origen en %s y destino en %s es de %s" %(item.Origen, item.Destino, Auxiliar))
@@ -190,20 +189,20 @@ while 1:
     if Eleccion == "4":
         os.system("clear")
 
-        ListaNSFW=[]
-
-        Habilitacion=True
         for Vuelo in ListaVuelos:
             for Tripulante in Vuelo.ListaTripulantes:
                 for Avion in Tripulante.ListaAviones:
                     if Avion != Vuelo.Avion:
-                        Auxiliar=Tripulante
-                        Habilitacion=False
-            if Habilitacion == False:
-                ListaNSFW.append(Auxiliar)
-            """""SEGUIR DESDE ACA"""
+                        print("El tripulante %s %s no esta habilitado para viajar en el vuelo con origen en %s y destino en %s"
+                              %(Tripulante.Nombre, Tripulante.Apellido, Vuelo.Origen, Vuelo.Destino))
+                        break
 
+        input("Enter para continuar")
 
+    if Eleccion == "5":
+        print("Hay que hacer este")
+
+        print("hola")
 
     if Eleccion == "7":
         break
