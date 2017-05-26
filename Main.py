@@ -154,7 +154,7 @@ while 1:
 
             for item3 in  item.ListaTripulantes:
                 Texto3 = [item3.Nombre, item3.Apellido, str(item3.FechaN), item3.DNI]
-                print("{: >20} {: >20} {: >20} {: >20}".format (*Texto3))
+                print("{: >20} {: >20} {: >20} {: >20}".format(*Texto3))
 
             input("Enter para continuar")
 
@@ -202,22 +202,48 @@ while 1:
 
         input("Enter para continuar")
 
+    if Eleccion == "5":
+        os.system("clear")
+
+        ListaTrips = []
+        for Persona in ListaPersonas2:
+            FechaAux = None
+            for Vuelos in ListaVuelos:
+                for item in Vuelos.ListaTripulantes:
+                    if item == Persona:
+                        if FechaAux == None:
+                            FechaAux = Vuelos.Fecha
+                            break
+                        if FechaAux == Vuelos.Fecha:
+                            ListaTrips.append(Persona)
+
+        for item in ListaTrips:
+            print("El Pasajero %s %s vuela mas de una vez al dia" % (item.Nombre, item.Apellido))
+
+        input("Enter para continuar")
+
+
     if Eleccion == "6":
         os.system("clear")
 
-        for Vuelo in ListaVuelos:
-            for Pasajero in Vuelo.ListaPasajeros:
-                if Pasajero.VIP == "1":
-                    print("El pasajero %s %s del vuelo con origen en %s y destino en %s es VIP"
-                          %(Pasajero.Nombre, Pasajero.Apellido, Vuelo.Origen, Vuelo.Destino))
-        input("Enter para continuar")
+    for Vuelo in ListaVuelos:
+        for Pasajero in Vuelo.ListaPasajeros:
+            if Pasajero.VIP == "1":
+                print("El pasajero %s %s del vuelo con origen en %s y destino en %s es VIP"
+                      % (Pasajero.Nombre, Pasajero.Apellido, Vuelo.Origen, Vuelo.Destino))
+    input("Enter para continuar")
 
-        for Vuelo in ListaVuelos:
-            for Pasajero in Vuelo.ListaPasajeros:
-                if Pasajero.Necesidades != None:
-                    print("El pasajero %s %s del vuelo con origen en %s y destino en %s tiene la necesidad de: %s"
-                          %(Pasajero.Nombre, Pasajero.Apellido, Vuelo.Origen, Vuelo.Destino, Pasajero.Necesidades))
-        input("Enter para continuar")
+    for Vuelo in ListaVuelos:
+        for Pasajero in Vuelo.ListaPasajeros:
+            if Pasajero.Necesidades != None:
+                print("El pasajero %s %s del vuelo con origen en %s y destino en %s tiene la necesidad de: %s"
+                      % (Pasajero.Nombre, Pasajero.Apellido, Vuelo.Origen, Vuelo.Destino, Pasajero.Necesidades))
+    input("Enter para continuar")
 
     if Eleccion == "7":
         break
+
+
+
+
+
