@@ -27,7 +27,10 @@ def cargarPersonas():
             unPasajero.setFechaN(int(Fecha[2]), int(Fecha[1]), int(Fecha[0]))
             unPasajero.setDNI(Auxiliar[4])
             unPasajero.setVIP(Auxiliar[5])
-            unPasajero.setNecesidades(Auxiliar[6])
+            if Auxiliar[6] == '\n':
+                unPasajero.setNecesidades(None)
+            else:
+                unPasajero.setNecesidades(Auxiliar[6])
 
             ListaPersonas2.append(unPasajero)
 
@@ -199,15 +202,22 @@ while 1:
 
         input("Enter para continuar")
 
-    if Eleccion == "5":
-        print("Hay que hacer este")
+    if Eleccion == "6":
+        os.system("clear")
 
-        print("hola")
+        for Vuelo in ListaVuelos:
+            for Pasajero in Vuelo.ListaPasajeros:
+                if Pasajero.VIP == "1":
+                    print("El pasajero %s %s del vuelo con origen en %s y destino en %s es VIP"
+                          %(Pasajero.Nombre, Pasajero.Apellido, Vuelo.Origen, Vuelo.Destino))
+        input("Enter para continuar")
+
+        for Vuelo in ListaVuelos:
+            for Pasajero in Vuelo.ListaPasajeros:
+                if Pasajero.Necesidades != None:
+                    print("El pasajero %s %s del vuelo con origen en %s y destino en %s tiene la necesidad de: %s"
+                          %(Pasajero.Nombre, Pasajero.Apellido, Vuelo.Origen, Vuelo.Destino, Pasajero.Necesidades))
+        input("Enter para continuar")
 
     if Eleccion == "7":
         break
-
-
-
-
-
