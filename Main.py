@@ -42,9 +42,11 @@ def cargarPersonas():
             unPiloto.setFechaN(int(Fecha[2]), int(Fecha[1]), int(Fecha[0]))
             unPiloto.setDNI(Auxiliar[4])
             Modelos=Auxiliar[5].split(",")
-            for item in Modelos:
-                unPiloto.addAviones(item)
-            unPiloto.addAviones(Auxiliar[5])
+
+            for item in ListaAviones2:
+                for item2 in Modelos:
+                    if item.Modelo == item2:
+                        unPiloto.addAviones(item)
 
             ListaPersonas2.append(unPiloto)
 
@@ -56,8 +58,10 @@ def cargarPersonas():
             unServicio.setFechaN(int(Fecha[2]), int(Fecha[1]), int(Fecha[0]))
             unServicio.setDNI(Auxiliar[4])
             Modelos=Auxiliar[5].split(",")
-            for item in Modelos:
-                unServicio.addAviones(item)
+            for item in ListaAviones2:
+                for item2 in Modelos:
+                    if item.Modelo == item2:
+                        unServicio.addAviones(item)
             unServicio.setIdiomas(Auxiliar[6])
 
             ListaPersonas2.append(unServicio)
@@ -121,8 +125,8 @@ def cargarVuelos():
 
     p.close()
 
-cargarPersonas()
 cargarAviones()
+cargarPersonas()
 cargarVuelos()
 
 while 1:
@@ -194,11 +198,14 @@ while 1:
 
         for Vuelo in ListaVuelos:
             for Tripulante in Vuelo.ListaTripulantes:
+                Comprob = False
                 for Avion in Tripulante.ListaAviones:
-                    if Avion != Vuelo.Avion:
-                        print("El tripulante %s %s no esta habilitado para viajar en el vuelo con origen en %s y destino en %s"
-                              %(Tripulante.Nombre, Tripulante.Apellido, Vuelo.Origen, Vuelo.Destino))
-                        break
+                    if Avion.Modelo == Vuelo.Avion.Modelo:
+                        Comprob=True
+                if Comprob == False:
+                    print("El tripulante %s %s no esta habilitado para viajar en el vuelo con origen en %s y destino en %s"
+                          %(Tripulante.Nombre, Tripulante.Apellido, Vuelo.Origen,
+                           Vuelo.Destino))
 
         input("Enter para continuar")
 
@@ -241,8 +248,3 @@ while 1:
 
     if Eleccion == "7":
         break
-
-
-
-
-
